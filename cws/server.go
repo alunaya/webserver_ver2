@@ -9,7 +9,7 @@ type Server struct {
 	port uint
 	middlewarePreRegistry []http.HandlerFunc
 	middlewarePostRegistry []http.HandlerFunc
-	routeMap map[string]map[string] http.HandlerFunc
+	Router Router
 }
 
 func NewServer(port uint) *Server{
@@ -22,7 +22,6 @@ func NewServer(port uint) *Server{
 }
 
 func (s *Server) Run(){
-
 	wrappedMux := http.NewServeMux()
 	trueMux := http.NewServeMux()
 	var preMiddlewareChain http.Handler
